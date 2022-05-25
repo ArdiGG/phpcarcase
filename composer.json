@@ -1,0 +1,16 @@
+{
+    "name": "arkadiy/conference-hw",
+    "authors": [
+        {
+            "name": "ArdiGG",
+            "email": "arkadiok2033@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "require": {
+    }
+}
