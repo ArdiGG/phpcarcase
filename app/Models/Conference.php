@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Helpers\Validator;
+
 class Conference
 {
     public function all()
@@ -13,12 +15,20 @@ class Conference
 
     public function create(array $data)
     {
-        $conference = \R::dispense('conferences');
+        $title = Validator::clean($data['title']);
+        $date = Validator::clean($data['date']);
+        $time = Validator::clean($data['time']);
+        $address = Validator::clean($data['address']);
 
-        $conference->title = $data['title'];
-        $conference->date = isset($data['time']) ? $data['date'] . ' ' . $data['time'] : $data['date'];
-        $conference->address = $data['address'];
+        if (!empty($title) && !empty($date) && !empty($address) && Validator::check_length($title, 2, 50) && Validator::check_length($address, 2, 100)) {
 
-        return \R::store($conference);
+            $conference = \R::dispense('conferences');
+
+            $conference->title = $title;
+            $conference->date = isset($data['time']) ? $data['date'] . ' ' . $data['time'] : $data['date'];
+            $conference->address = $address;
+
+            return \R::store($conference);
+        }
     }
 }
