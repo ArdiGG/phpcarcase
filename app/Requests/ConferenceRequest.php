@@ -13,7 +13,7 @@ class ConferenceRequest
         $data['time']= Validator::clean($data['time']);
         $data['address'] = Validator::clean($data['address']);
 
-        if (!empty($title) && !empty($date) && !empty($address) && Validator::check_length($title, 2, 50) && Validator::check_length($address, 2, 100)) {
+        if (!empty($data['title']) && !empty($data['date']) && !empty($data['address']) && Validator::check_length($data['title'], 2, 50) && Validator::check_length($data['address'], 2, 100)) {
             return $data;
         }
 
