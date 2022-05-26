@@ -35,9 +35,12 @@ class Router
 
     public static function enable()
     {
-        $controller = isset($_GET['controller']) ? $_GET['controller'] : null;
-        $method = isset($_GET['method']) ? '/' . $_GET['method'] : null;
-        $path = "/{$controller}{$method}";
+        $query = isset($_GET['q']) ? explode('/', $_GET['q']) : null;
+
+        $path = '';
+        foreach ($query as $part) {
+            $path .= '/' . (intval($part) == 0 ? $part : 'id');
+        }
 
         foreach (self::$list as $route) {
             if ($route['uri'] === $path) {

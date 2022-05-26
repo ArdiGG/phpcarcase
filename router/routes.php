@@ -3,9 +3,9 @@
 use App\Services\Router;
 
 Router::get('/', \App\Controllers\IndexController::class, 'index');
-Router::get('/test', \App\Controllers\ConferencesController::class, 'index', \App\Models\Conference::class);
-Router::get('/test/view', \App\Controllers\ConferencesController::class, 'view', \App\Models\Conference::class);
+Router::get('/conferences', \App\Controllers\ConferencesController::class, 'index', \App\Models\Conference::class);
+Router::get('/conferences/id', \App\Controllers\ConferencesController::class, 'show',\App\Models\Conference::class );
 
-Router::post('/test/create', \App\Controllers\ConferencesController::class, 'create', \App\Models\Conference::class,true);
+Router::post('/conferences/create', \App\Controllers\ConferencesController::class, 'create', \App\Models\Conference::class,true);
 
 Router::enable();

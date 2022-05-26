@@ -9,13 +9,7 @@ use App\Services\View;
 
 class ConferencesController
 {
-    public function index()
-    {
-        echo "TEST@INDEX<br>";
-        echo "Дефолтный метод TestController";
-    }
-
-    public function view(Conference $conference)
+    public function index(Conference $conference)
     {
         $conferences = $conference->all();
         Container::set(['conferences' => $conferences]);
@@ -23,6 +17,11 @@ class ConferencesController
         View::part('pages/test/view');
     }
 
+    public function show(Conference $conference, int $id)
+    {
+
+    }
+    
     public function create(Conference $conference, array $data)
     {
         $data = ConferenceRequest::validate($data);
@@ -31,6 +30,6 @@ class ConferencesController
             $conference->create($data);
         }
 
-        header('Location: /test/view');
+        header('Location: /conferences');
     }
 }

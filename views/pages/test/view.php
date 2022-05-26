@@ -47,7 +47,7 @@ View::part('layouts/master');
         <h3>Для создания конференции введите следующие данные:</h3>
     </div>
     <div class="panel">
-        <form action="/test/create" method="POST">
+        <form action="/conferences/create" method="POST">
             <div class="form-group">
                 <label for="formGroupExampleInput">Название Конференции</label>
                 <input type="text" name="title" class="form-control w-25" id="formGroupExampleInput" placeholder="Title">
