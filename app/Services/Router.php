@@ -47,9 +47,9 @@ class Router
                 if ($route['post']) {
                     $model = new $route['model'];
                     if ($route['formdata'] && $route['files']) {
-                        $class->$action($_POST, $_FILES, $model);
+                        $class->$action($model, $_POST, $_FILES);
                     } else if ($route['formdata']) {
-                        $class->$action($_POST, $model);
+                        $class->$action($model, $_POST);
                     } else {
                         $class->$action($model);
                     }

@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Helpers\Container;
 use App\Models\Conference;
+use App\Requests\ConferenceRequest;
 use App\Services\View;
 
 class ConferencesController
@@ -22,9 +23,13 @@ class ConferencesController
         View::part('pages/test/view');
     }
 
-    public function create(array $data, Conference $conference)
+    public function create(Conference $conference, array $data)
     {
-        $conference->create($data);
+        $data = ConferenceRequest::validate($data);
+
+        if (!is_null($data)) {
+            $conference->create($data);
+        }
 
         header('Location: /test/view');
     }

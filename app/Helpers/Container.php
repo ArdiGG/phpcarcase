@@ -8,7 +8,7 @@ class Container
 
     public static function set(array $element)
     {
-        self::$data = $element;
+        self::$data[] = $element;
     }
 
     public static function get(string $key)
