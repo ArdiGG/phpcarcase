@@ -24,8 +24,13 @@ class ConferencesController
 
         View::part('pages/conferences/show');
     }
-    
-    public function create(Conference $conference, array $data)
+
+    public function create()
+    {
+        View::part('pages/conferences/create');
+    }
+
+    public function store(Conference $conference, array $data)
     {
         $data = ConferenceRequest::validate($data);
 

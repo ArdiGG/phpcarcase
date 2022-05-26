@@ -46,6 +46,7 @@ class Router
             $path .= '/' . (intval($part) == 0 ? $part : 'id');
         }
 
+
         foreach (self::$list as $route) {
             if ($route['uri'] === $path) {
                 $class = new $route['class'];
