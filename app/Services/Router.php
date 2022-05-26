@@ -35,7 +35,6 @@ class Router
 
     public static function enable()
     {
-
         $controller = isset($_GET['controller']) ? $_GET['controller'] : null;
         $method = isset($_GET['method']) ? '/' . $_GET['method'] : null;
         $path = "/{$controller}{$method}";

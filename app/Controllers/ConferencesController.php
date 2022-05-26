@@ -18,7 +18,7 @@ class ConferencesController
     public function view(Conference $conference)
     {
         $conferences = $conference->all();
-        Container::set(['conferences' => $conferences]);
+        Container::set(['conferences', $conferences]);
 
         View::part('pages/test/view');
     }

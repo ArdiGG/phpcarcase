@@ -8,17 +8,13 @@ class Container
 
     public static function set(array $element)
     {
-        self::$data[] = $element;
+        self::$data[$element[0]] = $element[1];
     }
 
     public static function get(string $key)
     {
-        foreach (self::$data as $dKey => $value) {
-            if($key === $dKey) {
-                return $value;
-            }
-        }
+        $elements = self::$data[$key];
 
-        return null;
+        return $elements;
     }
 }
