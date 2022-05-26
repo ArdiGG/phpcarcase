@@ -10,13 +10,14 @@ class Router
 {
     private static $list = [];
 
-    public static function get(string $uri, $controller, string $method, $model = null)
+    public static function get(string $uri, $controller, string $method, $model = null, $id = false)
     {
         self::$list[] = [
             'uri' => $uri,
             'class' => $controller,
             'method' => $method,
-            'model' => $model
+            'model' => $model,
+            'id' => $id
         ];
     }
 
@@ -36,9 +37,12 @@ class Router
     public static function enable()
     {
         $query = isset($_GET['q']) ? explode('/', $_GET['q']) : null;
-
+        $id = -INF;
         $path = '';
         foreach ($query as $part) {
+            if (intval($part) != 0) {
+                $id = $part;
+            }
             $path .= '/' . (intval($part) == 0 ? $part : 'id');
         }
 
@@ -56,9 +60,13 @@ class Router
                         $class->$action($model);
                     }
                 } else {
-                    if($route['model']) {
+                    if ($route['model']) {
                         $model = new $route['model'];
-                        $class->$action($model);
+                        if ($route['id']) {
+                            $class->$action($model, $id);
+                        } else {
+                            $class->$action($model);
+                        }
                     } else {
                         $class->$action();
                     }

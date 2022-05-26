@@ -14,12 +14,15 @@ class ConferencesController
         $conferences = $conference->all();
         Container::set(['conferences' => $conferences]);
 
-        View::part('pages/test/view');
+        View::part('pages/conferences/index');
     }
 
     public function show(Conference $conference, int $id)
     {
+        $conference = $conference->find($id);
+        Container::set(['conference' => $conference]);
 
+        View::part('pages/conferences/show');
     }
     
     public function create(Conference $conference, array $data)

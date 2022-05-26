@@ -13,6 +13,13 @@ class Conference
         return $conferences;
     }
 
+    public function find(int $id)
+    {
+        $conference = \R::findOne('conferences', "id = {$id}");
+
+        return $conference;
+    }
+
     public function create(array $data)
     {
             $conference = \R::dispense('conferences');
