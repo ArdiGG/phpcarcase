@@ -41,6 +41,9 @@ View::part('layouts/master');
                     <a href="conferences/<?php echo $conference['id']; ?>">
                         <button class="btn btn-success">Открыть</button>
                     </a>
+                    <a href="conferences/<?php echo $conference['id']?>/edit">
+                        <button class="btn btn-warning">Редактировать</button>
+                    </a>
                 </td>
             </tr>
             <?php

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Helpers\Validator;
 
-class Conference
+class Conference extends Model
 {
     public function all()
     {
@@ -29,5 +29,16 @@ class Conference
             $conference->address = $data['address'];
 
             return \R::store($conference);
+    }
+
+    public function update(int $id, array $data)
+    {
+        $conference = \R::load('conferences', $id);
+
+        $conference->title = $data['title'];
+        $conference->date = isset($data['time']) ? $data['date'] . ' ' . $data['time'] : $data['date'];
+        $conference->address = $data['address'];
+
+        return \R::store($conference);
     }
 }

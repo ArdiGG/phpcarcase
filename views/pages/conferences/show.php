@@ -36,11 +36,9 @@ View::part('layouts/master');
         </tbody>
     </table>
 
-    <a href="/conferences" class="link-primary">
-        <button class="btn btn-info">
-            Вернуться к конференциям
-        </button>
-    </a>
+    <?php
+    View::part('components/go_to_confs_btn');
+    ?>
 
 </div>
 

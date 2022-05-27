@@ -2,9 +2,11 @@
 
 namespace App\Services;
 
+use App\Controllers\Controller;
 use App\Controllers\ErrorController;
 use App\Controllers\IndexController;
 use App\Models\Conference;
+use App\Models\Model;
 
 class Router
 {
@@ -21,7 +23,7 @@ class Router
         ];
     }
 
-    public static function post(string $uri, $controller, string $method, $model, $formdata = false, $files = false)
+    public static function post(string $uri,  $controller, string $method,  $model, $formdata = false, $files = false)
     {
         self::$list[] = [
             'uri' => $uri,
@@ -29,6 +31,20 @@ class Router
             'method' => $method,
             'post' => true,
             'model' => $model,
+            'formdata' => $formdata,
+            'files' => $files
+        ];
+    }
+
+    public static function patch(string $uri,  $controller, string $method,  $model, $id = false, $formdata = false, $files = false)
+    {
+        self::$list[] = [
+            'uri' => $uri,
+            'class' => $controller,
+            'method' => $method,
+            'patch' => true,
+            'model' => $model,
+            'id' => $id,
             'formdata' => $formdata,
             'files' => $files
         ];
@@ -42,10 +58,11 @@ class Router
         foreach ($query as $part) {
             if (intval($part) != 0) {
                 $id = $part;
+                $part = 'id';
             }
-            $path .= '/' . (intval($part) == 0 ? $part : 'id');
-        }
 
+            $path .= '/' . $part;
+        }
 
         foreach (self::$list as $route) {
             if ($route['uri'] === $path) {
@@ -59,6 +76,15 @@ class Router
                         $class->$action($model, $_POST);
                     } else {
                         $class->$action($model);
+                    }
+                } else if ($route['patch']){
+                    $model = new $route['model'];
+                    if ($route['formdata'] && $route['files']) {
+                        $class->$action($model, $id, $_POST, $_FILES);
+                    } else if ($route['formdata']) {
+                        $class->$action($model, $id, $_POST);
+                    } else {
+                        $class->$action($model, $id);
                     }
                 } else {
                     if ($route['model']) {
