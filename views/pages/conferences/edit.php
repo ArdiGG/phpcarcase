@@ -45,9 +45,12 @@ View::part('layouts/master');
                     <?php
                     View::part('components/go_to_confs_btn');
                     ?>
+
                 </div>
             </form>
-
+            <a href="delete">
+                <button class="btn btn-danger mt-2">Удалить</button>
+            </a>
         </div>
     </div>
 </div>

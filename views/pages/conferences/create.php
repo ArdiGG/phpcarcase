@@ -39,11 +39,11 @@ View::part('layouts/master');
                 <!-- The element that will contain our Google Map. This is used in both the Javascript and CSS above. -->
 
                 <input class="btn btn-success mt-2" type="submit" value="Создать">
-                <?php
-                View::part('components/go_to_confs_btn');
-                ?>
             </form>
 
+            <?php
+            View::part('components/go_to_confs_btn');
+            ?>
             <script type="text/javascript" src="../../assets/js/countries.js"></script>
             <script type="text/javascript"
                     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrckLvAQiE9dGQ9klXIfQUVjy8lWKS34g"></script>

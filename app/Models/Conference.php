@@ -24,7 +24,6 @@ class Conference extends Model
     public function prepareData(array $data): array
     {
         $data['date'] = isset($data['time']) ? $data['date'] . ' ' . $data['time'] : $data['date'];
-        $data['address'] = substr($data['address'], 1, strlen($data['address']) - 2);
         $data['country'] = $data['country'] === 'default' ? null : $data['country'];
 
         return $data;

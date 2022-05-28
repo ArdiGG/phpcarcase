@@ -44,6 +44,9 @@ View::part('layouts/master');
     <?php
     View::part('components/go_to_confs_btn');
     ?>
+    <a href="<?php echo $conference['id']?>/delete">
+        <button class="btn btn-danger mt-2">Удалить</button>
+    </a>
 
     <script type="text/javascript"
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrckLvAQiE9dGQ9klXIfQUVjy8lWKS34g"></script>
