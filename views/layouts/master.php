@@ -7,8 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
-    <script src="jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="../../assets/css/index.css">
 
+
+    <script src="jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="../../assets/js/node_modules/jquery/dist/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
@@ -20,6 +23,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
+                <li class="nav-item">
+                    <img src="../../assets/images/logo.svg" alt="">
+                </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>

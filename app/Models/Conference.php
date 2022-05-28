@@ -27,6 +27,7 @@ class Conference extends Model
             $conference->title = $data['title'];
             $conference->date = isset($data['time']) ? $data['date'] . ' ' . $data['time'] : $data['date'];
             $conference->address = $data['address'];
+            $conference->country = $data['country'];
 
             return \R::store($conference);
     }
@@ -38,7 +39,13 @@ class Conference extends Model
         $conference->title = $data['title'];
         $conference->date = isset($data['time']) ? $data['date'] . ' ' . $data['time'] : $data['date'];
         $conference->address = $data['address'];
+        $conference->country = $data['country'];
 
         return \R::store($conference);
+    }
+
+    public function delete(int $id)
+    {
+        \R::trash('conferences', $id);
     }
 }

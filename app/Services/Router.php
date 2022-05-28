@@ -36,7 +36,7 @@ class Router
         ];
     }
 
-    public static function patch(string $uri,  $controller, string $method,  $model, $id = false, $formdata = false, $files = false)
+    public static function patch(string $uri,  $controller, string $method,  $model, $formdata = false, $files = false)
     {
         self::$list[] = [
             'uri' => $uri,
@@ -44,9 +44,19 @@ class Router
             'method' => $method,
             'patch' => true,
             'model' => $model,
-            'id' => $id,
             'formdata' => $formdata,
             'files' => $files
+        ];
+    }
+
+    public static function delete(string $uri,  $controller, string $method,  $model)
+    {
+        self::$list[] = [
+            'uri' => $uri,
+            'class' => $controller,
+            'method' => $method,
+            'delete' => true,
+            'model' => $model,
         ];
     }
 
@@ -86,6 +96,9 @@ class Router
                     } else {
                         $class->$action($model, $id);
                     }
+                } else if ($route['delete']){
+                    $model = new $route['model'];
+                    $class->$action($model, $id);
                 } else {
                     if ($route['model']) {
                         $model = new $route['model'];

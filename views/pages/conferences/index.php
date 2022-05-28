@@ -19,9 +19,6 @@ View::part('layouts/master');
                 Дата
             </th>
             <th>
-                Адресс
-            </th>
-            <th>
                 Действия
             </th>
         </tr>
@@ -36,13 +33,15 @@ View::part('layouts/master');
                 <td>
                     <?php echo $conference['date'] ?>
                 </td>
-                <td><?php echo $conference['address'] ?></td>
                 <td>
                     <a href="conferences/<?php echo $conference['id']; ?>">
                         <button class="btn btn-success">Открыть</button>
                     </a>
                     <a href="conferences/<?php echo $conference['id']?>/edit">
                         <button class="btn btn-warning">Редактировать</button>
+                    </a>
+                    <a href="conferences/<?php echo $conference['id']?>/delete">
+                        <button class="btn btn-danger">Удалить</button>
                     </a>
                 </td>
             </tr>

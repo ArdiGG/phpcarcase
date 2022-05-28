@@ -40,6 +40,8 @@ class ConferencesController extends Controller
 
     public function update(Conference $conference, int $id, array $data)
     {
+        $data = ConferenceRequest::validate($data);
+
         $conference = $conference->update($id, $data);
         Container::set(['conference' => $conference]);
 
@@ -53,6 +55,13 @@ class ConferencesController extends Controller
         if (!is_null($data)) {
             $conference->create($data);
         }
+
+        header('Location: /conferences');
+    }
+
+    public function delete(Conference $conference, $id)
+    {
+        $conference->delete($id);
 
         header('Location: /conferences');
     }

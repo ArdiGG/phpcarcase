@@ -9,6 +9,8 @@ Router::get('/conferences/id/edit', \App\Controllers\ConferencesController::clas
 
 Router::post('/conferences/store', \App\Controllers\ConferencesController::class, 'store', \App\Models\Conference::class,true);
 
-Router::patch('/conferences/id/update', \App\Controllers\ConferencesController::class, 'update', \App\Models\Conference::class, true, true );
+Router::patch('/conferences/id/update', \App\Controllers\ConferencesController::class, 'update', \App\Models\Conference::class, true );
+
+Router::delete('/conferences/id/delete', \App\Controllers\ConferencesController::class, 'delete', \App\Models\Conference::class);
 
 Router::enable();

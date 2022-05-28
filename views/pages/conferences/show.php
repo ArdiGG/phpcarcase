@@ -20,7 +20,7 @@ View::part('layouts/master');
                 Дата
             </th>
             <th>
-                Адресс
+                Страна
             </th>
         </tr>
         <tr>
@@ -31,15 +31,23 @@ View::part('layouts/master');
             <td>
                 <?php echo $conference['date'] ?>
             </td>
-            <td><?php echo $conference['address'] ?></td>
+            <td>
+                <?php echo $conference['country'] ?>
+            </td>
+            <input class="address" style="display: none" disabled value="<?php echo $conference['address'] ?>">
         </tr>
         </tbody>
     </table>
-
+    <?php if ($conference['address'] != '') { ?>
+        <div id="map"></div>
+    <?php } ?>
     <?php
     View::part('components/go_to_confs_btn');
     ?>
 
+    <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrckLvAQiE9dGQ9klXIfQUVjy8lWKS34g"></script>
+    <script type="text/javascript" src="../../../assets/js/index.js"></script>
 </div>
 
 </body>
