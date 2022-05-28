@@ -19,6 +19,9 @@ View::part('layouts/master');
                 Дата
             </th>
             <th>
+                Страна
+            </th>
+            <th>
                 Действия
             </th>
         </tr>
@@ -32,6 +35,9 @@ View::part('layouts/master');
                 </td>
                 <td>
                     <?php echo $conference['date'] ?>
+                </td>
+                <td>
+                    <?php echo $conference['country'] ?>
                 </td>
                 <td>
                     <a href="conferences/<?php echo $conference['id']; ?>">

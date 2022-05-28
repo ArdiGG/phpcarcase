@@ -4,7 +4,7 @@ google.maps.event.addDomListener(window, 'load', init);
 function init() {
 
     let addr = $('.address').val();
-    addr = addr.slice(1, addr.length - 1).split(', ')
+    addr = addr.split(', ')
 
     let makeMarker = true;
 

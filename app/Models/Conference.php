@@ -3,49 +3,48 @@
 namespace App\Models;
 
 use App\Helpers\Validator;
+use App\Services\DB;
 
 class Conference extends Model
 {
     public function all()
     {
-        $conferences = \R::findAll('conferences');
+        $conferences = DB::findAll('conferences');
 
         return $conferences;
     }
 
     public function find(int $id)
     {
-        $conference = \R::findOne('conferences', "id = {$id}");
+        $conference = DB::findOne('conferences', "id = {$id}");
 
         return $conference;
     }
 
     public function create(array $data)
     {
-            $conference = \R::dispense('conferences');
+        $title = $data['title'];
+        $date = isset($data['time']) ? $data['date'] . ' ' . $data['time'] : $data['date'];
+        $address = substr($data['address'], 1, strlen($data['address']) - 2);
+        $country = $data['country'];
 
-            $conference->title = $data['title'];
-            $conference->date = isset($data['time']) ? $data['date'] . ' ' . $data['time'] : $data['date'];
-            $conference->address = $data['address'];
-            $conference->country = $data['country'];
-
-            return \R::store($conference);
+        return DB::query("INSERT INTO conferences(title, date, address, country) VALUES('{$title}', '{$date}', '{$address}', '{$country}');");
     }
 
     public function update(int $id, array $data)
     {
-        $conference = \R::load('conferences', $id);
+        $title = $data['title'];
+        $date = isset($data['time']) ? $data['date'] . ' ' . $data['time'] : $data['date'];
+        $address = substr($data['address'], 1, strlen($data['address']) - 2);
+        $country = $data['country'];
 
-        $conference->title = $data['title'];
-        $conference->date = isset($data['time']) ? $data['date'] . ' ' . $data['time'] : $data['date'];
-        $conference->address = $data['address'];
-        $conference->country = $data['country'];
-
-        return \R::store($conference);
+        DB::query("UPDATE conferences 
+                            SET title = '{$title}', date = '{$date}', address = '{$address}', country =  '{$country}'
+                                WHERE id = '{$id}';");
     }
 
     public function delete(int $id)
     {
-        \R::trash('conferences', $id);
+        DB::delete('conferences', $id);
     }
 }

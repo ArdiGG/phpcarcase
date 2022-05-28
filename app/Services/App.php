@@ -25,11 +25,7 @@ class App
     {
         $config = require_once 'config/db.php';
 
-        \R::setup( "mysql:host={$config['host']};dbname={$config['db']}",
-            $config['username'], $config['password'] );
-
-        if(! \R::testConnection()) {
-            die('Error database connect');
-        }
+        DB::setup("mysql:host={$config['host']};dbname={$config['db']}",
+            $config['username'], $config['password']);
      }
 }

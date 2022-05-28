@@ -42,6 +42,11 @@ class ConferencesController extends Controller
     {
         $data = ConferenceRequest::validate($data);
 
+        if (is_null($data)) {
+            header("Location: /conferences/{$id}/edit");
+            return;
+        }
+
         $conference = $conference->update($id, $data);
         Container::set(['conference' => $conference]);
 
@@ -52,10 +57,12 @@ class ConferencesController extends Controller
     {
         $data = ConferenceRequest::validate($data);
 
-        if (!is_null($data)) {
-            $conference->create($data);
+        if (is_null($data)) {
+            header('Location: /conferences/create');
+            return;
         }
 
+        $conference->create($data);
         header('Location: /conferences');
     }
 
