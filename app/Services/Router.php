@@ -63,6 +63,7 @@ class Router
     public static function enable()
     {
         $query = isset($_GET['q']) ? explode('/', $_GET['q']) : null;
+
         $id = -INF;
         $path = '';
         foreach ($query as $part) {

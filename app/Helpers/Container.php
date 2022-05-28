@@ -4,7 +4,7 @@ namespace App\Helpers;
 
 class Container
 {
-    public static array $data = [];
+    public static $data = [];
 
     public static function set(array $element)
     {

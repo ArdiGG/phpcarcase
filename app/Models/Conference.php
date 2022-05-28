@@ -21,25 +21,28 @@ class Conference extends Model
         return $conference;
     }
 
+    public function prepareData(array $data): array
+    {
+        $data['date'] = isset($data['time']) ? $data['date'] . ' ' . $data['time'] : $data['date'];
+        $data['address'] = substr($data['address'], 1, strlen($data['address']) - 2);
+        $data['country'] = $data['country'] === 'default' ? null : $data['country'];
+
+        return $data;
+    }
+
     public function create(array $data)
     {
-        $title = $data['title'];
-        $date = isset($data['time']) ? $data['date'] . ' ' . $data['time'] : $data['date'];
-        $address = substr($data['address'], 1, strlen($data['address']) - 2);
-        $country = $data['country'];
+        $data = $this->prepareData($data);
 
-        return DB::query("INSERT INTO conferences(title, date, address, country) VALUES('{$title}', '{$date}', '{$address}', '{$country}');");
+        DB::query("INSERT INTO conferences(title, date, address, country) VALUES('{$data['title']}', '{$data['date']}', '{$data['address']}', '{$data['country']}');");
     }
 
     public function update(int $id, array $data)
     {
-        $title = $data['title'];
-        $date = isset($data['time']) ? $data['date'] . ' ' . $data['time'] : $data['date'];
-        $address = substr($data['address'], 1, strlen($data['address']) - 2);
-        $country = $data['country'];
+        $data = $this->prepareData($data);
 
         DB::query("UPDATE conferences 
-                            SET title = '{$title}', date = '{$date}', address = '{$address}', country =  '{$country}'
+                            SET title = '{$data['title']}', date = '{$data['date']}', address = '{$data['address']}', country =  '{$data['country']}'
                                 WHERE id = '{$id}';");
     }
 

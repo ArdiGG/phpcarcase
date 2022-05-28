@@ -6,7 +6,7 @@ use PDO;
 
 class DB
 {
-    private static PDO $pdo;
+    private static $pdo;
 
     public static function setup(string $dsn, string $user, string $password)
     {
